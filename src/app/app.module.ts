@@ -18,6 +18,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmChangeComponent } from './confirm-change/confirm-change.component';
 import { ConfirmDiscardComponent } from './confirm-discard/confirm-discard.component';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ConfirmDiscardComponent } from './confirm-discard/confirm-discard.compo
     PersonListComponent,
     PeopleFormComponent,
     ConfirmChangeComponent,
-    ConfirmDiscardComponent
+    ConfirmDiscardComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,

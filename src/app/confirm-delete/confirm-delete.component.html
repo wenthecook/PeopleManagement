@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Delete Person</h1>
+<div mat-dialog-content>
+  <p>This person will be deleted: </p>
+  <div>First Name: {{people.FirstName}}</div>
+  <div>Last Name: {{people.LastName}}</div>
+  <div>Email: {{people.Email}}</div>
+  <div>TelephoneNumber: {{people.TelephoneNumber}}</div>
+  <div>DOB:
+    {{people.DateOfBirth.getDate()}}/{{(people.DateOfBirth.getMonth() + 1 >= 10 ? "" : "0") + (people.DateOfBirth.getMonth() + 1)}}/{{people.DateOfBirth.getFullYear()}}
+  </div>
+</div>
+<div class="button-bar" mat-dialog-actions>
+  <button mat-button (click)="delete(people)" [mat-dialog-close]="">Delete</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
+</div>

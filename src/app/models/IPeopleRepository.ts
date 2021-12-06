@@ -40,6 +40,15 @@ export interface IPeopleRepository {
   changePeople(id: number, newPeople: People): boolean;
 
   /**
+   * @description delete a person
+   *
+   * @param {number} id
+   * @return {*}  {boolean}
+   * @memberof IPeopleRepository
+   */
+  deletePeople(id: number):boolean;
+
+  /**
    * @description find the first index of a people. If not in the list, return -1
    *
    * @param {People} people

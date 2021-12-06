@@ -50,6 +50,15 @@ export class mockPeopleRepository implements IPeopleRepository {
     return true;
   }
 
+  deletePeople(id: number):boolean {
+    if (!this._peopleList[id]) {
+      return false;
+    }
+    this._peopleList.splice(id, 1);
+    this._length = this._peopleList.length;
+    return true;
+  }
+
   findIndex(people: People): number {
     for (let i = 0; i < this.peopleList.length; i++) {
       let p = this.getPeople(i);

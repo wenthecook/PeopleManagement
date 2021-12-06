@@ -11,6 +11,10 @@
   cursor: pointer;
   text-decoration: underline;
 }
+.mat-column-Delete:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 td {
   cursor: pointer;
 }
