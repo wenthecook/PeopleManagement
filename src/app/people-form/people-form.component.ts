@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmChangeComponent } from '../confirm-change/confirm-change.component';
 import { ConfirmDiscardComponent } from '../confirm-discard/confirm-discard.component';
 import { PersonService } from '../person.service';
+import { PeopleFormService } from '../people-form.service';
 
 import { People } from '../models/People';
 
@@ -17,11 +18,16 @@ import { People } from '../models/People';
 export class PeopleFormComponent implements OnInit {
 
   profileForm: FormGroup;
+  wrongFirstName: boolean = false;
+  wrongLastName: boolean = false;
+  wrongEmail: boolean = false;
+  wrongTelephoneNumber: boolean = false;
 
   constructor(
     private personService: PersonService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private peopleFormService: PeopleFormService
   ) {
     if (this.personService.indexOfPersonUnderChange !== -1) {
       let person = this.personService.peopleRepository.getPeople(this.personService.indexOfPersonUnderChange);
@@ -38,7 +44,7 @@ export class PeopleFormComponent implements OnInit {
         lastName: new FormControl(""),
         email: new FormControl(""),
         telephoneNumber: new FormControl(""),
-        dateOfBirth: new FormControl(""),
+        dateOfBirth: new FormControl(new Date()),
       });
     } else {
       this.profileForm = new FormGroup({});
@@ -59,11 +65,54 @@ export class PeopleFormComponent implements OnInit {
       formValue.telephoneNumber,
       formValue.email
     );
-    this.dialog.open(ConfirmChangeComponent, {
+    let dialogRef = this.dialog.open(ConfirmChangeComponent, {
       width: '350px',
       data: newPeople,
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.wrongFirstName = this.peopleFormService.wrongFirstName;
+      this.wrongLastName = this.peopleFormService.wrongLastName;
+      this.wrongEmail = this.peopleFormService.wrongEmail;
+      this.wrongTelephoneNumber = this.peopleFormService.wrongTelephoneNumber;
+      this.peopleFormService.clear();
+    });
   }
+
+  verifyFirstName() {
+    this.wrongFirstName = false;
+    let formValue = this.profileForm.value;
+    if (formValue.firstName === '') {
+      this.wrongFirstName = true;
+    }
+  }
+
+  verifyLastName() {
+    this.wrongLastName = false;
+    let formValue = this.profileForm.value;
+    if (formValue.lastName === '') {
+      this.wrongLastName = true;
+    }
+  }
+
+  verifyEmail() {
+    this.wrongEmail = false;
+    let formValue = this.profileForm.value;
+    let email = formValue.email;
+    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+      this.wrongEmail = true;
+    }
+  }
+
+  verifyTelephoneNumber() {
+    this.wrongTelephoneNumber = false;
+    let formValue = this.profileForm.value;
+    let tel = formValue.telephoneNumber;
+    if(!(/^\d+$/.test(tel))) {
+      this.wrongTelephoneNumber = true;
+    }
+  }
+
+
 
   discardChange() {
     this.dialog.open(ConfirmDiscardComponent, {
