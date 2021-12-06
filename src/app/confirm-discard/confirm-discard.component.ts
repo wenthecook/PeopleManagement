@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-confirm-discard',
   templateUrl: './confirm-discard.component.html',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmDiscardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmDiscardComponent>,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  confirm() {
+    this.router.navigateByUrl('person-list');
   }
 
 }

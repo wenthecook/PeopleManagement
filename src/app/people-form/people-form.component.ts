@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ConfirmChangeComponent } from '../confirm-change/confirm-change.component';
+import { ConfirmDiscardComponent } from '../confirm-discard/confirm-discard.component';
 import { PersonService } from '../person.service';
 
 import { People } from '../models/People';
@@ -54,7 +55,9 @@ export class PeopleFormComponent implements OnInit {
   }
 
   discardChange() {
-    this.router.navigateByUrl('person-list');
+    this.dialog.open(ConfirmDiscardComponent, {
+      width: '350px',
+    });
   }
 
 }

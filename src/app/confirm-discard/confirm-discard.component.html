@@ -1,1 +1,8 @@
-<p>confirm-discard works!</p>
+<h1 mat-dialog-title>Discard Change</h1>
+<div mat-dialog-content>
+  <p>Any <b>unsaved change</b> will be discarded and you will be redirected to the home page.</p>
+</div>
+<div class="button-bar" mat-dialog-actions>
+  <button mat-button (click)="confirm()" [mat-dialog-close]="">Confirm</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
+</div>
