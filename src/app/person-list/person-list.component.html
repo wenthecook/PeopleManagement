@@ -1,41 +1,38 @@
-<ul>
-  <li *ngFor="let people of peopleList; index as i">
-    {{people.FirstName}}
-    {{people.LastName}}
-    {{people.Email}}
-    {{people.DateOfBirth.getDate()}}/{{(people.DateOfBirth.getMonth() + 1 >= 10 ? "" : "0") + (people.DateOfBirth.getMonth() + 1)}}/{{people.DateOfBirth.getFullYear()}}
-  </li>
-</ul>
+<div class="mainBody">
+  <h1> People Management System </h1>
+  <table mat-table [dataSource]="peopleList" class="mat-elevation-z8 people-table">
 
-<table mat-table [dataSource]="peopleList" class="mat-elevation-z8">
+    <ng-container matColumnDef="First Name">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let people"> {{people.FirstName}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="First Name">
-    <th mat-header-cell *matHeaderCellDef> First Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-  </ng-container>
+    <ng-container matColumnDef="Last Name">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let people"> {{people.LastName}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Last Name">
-    <th mat-header-cell *matHeaderCellDef> Last Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-  </ng-container>
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let people"> {{people.Email}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Email">
-    <th mat-header-cell *matHeaderCellDef> Email </th>
-    <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-  </ng-container>
+    <ng-container matColumnDef="Date of Birth">
+      <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+      <td mat-cell *matCellDef="let people">
+        {{people.DateOfBirth.getDate()}}/{{(people.DateOfBirth.getMonth() + 1 >= 10 ? "" : "0") + (people.DateOfBirth.getMonth() + 1)}}/{{people.DateOfBirth.getFullYear()}}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Date of Birth">
-    <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
-    <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-  </ng-container>
+    <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let people" (click)="editPeople(people)"> Edit </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Edit">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" (click)="editPeople(element)"> Edit </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  </table>
+  <button class="upload-button">Upload the list</button>
+</div>
 
 

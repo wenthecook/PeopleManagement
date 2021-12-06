@@ -7,7 +7,17 @@ import { mockPeopleRepository } from './models/mockPeopleRepository';
 })
 export class PersonService {
 
+  debug: boolean = true;
+
   readonly peopleRepository: IPeopleRepository;
+
+  private _indexOfPersonUnderChange: number = -1;
+  public get indexOfPersonUnderChange(): number {
+    return this._indexOfPersonUnderChange;
+  }
+  public set indexOfPersonUnderChange(id: number) {
+    this._indexOfPersonUnderChange = id;
+  }
 
   constructor() {
     this.peopleRepository = new mockPeopleRepository();

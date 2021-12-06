@@ -1,0 +1,23 @@
+.mainBody {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
+}
+.people-table {
+  width: 100%;
+}
+.mat-column-Edit:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.upload-button {
+  margin-top: 15px;
+  padding: 10px 25px 10px;
+  border: none;
+  border-radius: 5%;
+  font-size: 25px;
+}
+.upload-button:hover {
+  cursor: pointer;
+  background-color: rgba(220, 220, 220);
+}

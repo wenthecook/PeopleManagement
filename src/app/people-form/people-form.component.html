@@ -1,1 +1,39 @@
-<p>people-form works!</p>
+<div class="mainBody">
+
+  <h1>
+    Change Person's Detail
+  </h1>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label for="firstName">First Name: </mat-label>
+      <input matInput id="firstName" type="text" formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="lastName">Last Name: </mat-label>
+      <input matInput id="lastName" type="text" formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="email">Email: </mat-label>
+      <input matInput id="email" type="email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="telephoneNumber">Telephone Number: </mat-label>
+      <input matInput id="telephoneNumber" type="tel" formControlName="telephoneNumber">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" autocomplete="off">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button class="save-button" type="submit" [disabled]="!profileForm.valid">Save</button>
+  </form>
+
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../person.service';
+import { Router } from '@angular/router';
 
 import { People } from '../models/People';
 import { IPeopleRepository } from '../models/IPeopleRepository';
@@ -23,7 +24,8 @@ export class PersonListComponent implements OnInit {
 
 
   constructor(
-    private personService: PersonService
+    private personService: PersonService,
+    private router: Router,
   ) {
     this.peopleRepository = this.personService.peopleRepository;
     this.peopleList = this.personService.peopleRepository.peopleList;
@@ -34,7 +36,8 @@ export class PersonListComponent implements OnInit {
 
   editPeople(people: People): void {
     let i = this.peopleRepository.findIndex(people);
-    console.log(i);
+    this.personService.indexOfPersonUnderChange = i;
+    this.router.navigateByUrl('person-form');
   }
 
 }
