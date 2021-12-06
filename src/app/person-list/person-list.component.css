@@ -11,6 +11,9 @@
   cursor: pointer;
   text-decoration: underline;
 }
+td {
+  cursor: pointer;
+}
 .upload-button {
   margin-top: 15px;
   padding: 10px 25px 10px;

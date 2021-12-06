@@ -42,5 +42,5 @@
     </mat-form-field>
 
   </form>
-  <button class="save-button" type="submit" [disabled]="!profileForm.valid">Save</button>
+  <button class="save-button" (click)="onSubmit()" type="submit" [disabled]="!profileForm.valid">Save</button>
 </div>

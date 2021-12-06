@@ -4,22 +4,22 @@
 
     <ng-container matColumnDef="First Name">
       <th mat-header-cell *matHeaderCellDef> First Name </th>
-      <td mat-cell *matCellDef="let people"> {{people.FirstName}} </td>
+      <td mat-cell *matCellDef="let people" (click)="editPeople(people)"> {{people.FirstName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Last Name">
       <th mat-header-cell *matHeaderCellDef> Last Name </th>
-      <td mat-cell *matCellDef="let people"> {{people.LastName}} </td>
+      <td mat-cell *matCellDef="let people" (click)="editPeople(people)"> {{people.LastName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Email">
       <th mat-header-cell *matHeaderCellDef> Email </th>
-      <td mat-cell *matCellDef="let people"> {{people.Email}} </td>
+      <td mat-cell *matCellDef="let people" (click)="editPeople(people)"> {{people.Email}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Date of Birth">
       <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
-      <td mat-cell *matCellDef="let people">
+      <td mat-cell *matCellDef="let people" (click)="editPeople(people)">
         {{people.DateOfBirth.getDate()}}/{{(people.DateOfBirth.getMonth() + 1 >= 10 ? "" : "0") + (people.DateOfBirth.getMonth() + 1)}}/{{people.DateOfBirth.getFullYear()}}
       </td>
     </ng-container>
@@ -32,7 +32,9 @@
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
   </table>
-  <button class="upload-button">Upload the list</button>
+  <button class="upload-button" (click)="addPeople()">Add a Person</button>
+  <br><br>
+  <button class="upload-button">Upload the list to server</button>
 </div>
 
 

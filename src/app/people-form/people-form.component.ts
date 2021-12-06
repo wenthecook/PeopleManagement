@@ -23,17 +23,27 @@ export class PeopleFormComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog
   ) {
-    if (this.personService.indexOfPersonUnderChange === -1) {
+    if (this.personService.indexOfPersonUnderChange !== -1) {
+      let person = this.personService.peopleRepository.getPeople(this.personService.indexOfPersonUnderChange);
+      this.profileForm= new FormGroup({
+        firstName: new FormControl(person.FirstName),
+        lastName: new FormControl(person.LastName),
+        email: new FormControl(person.Email),
+        telephoneNumber: new FormControl(person.TelephoneNumber),
+        dateOfBirth: new FormControl(person.DateOfBirth),
+      });
+    } else if(this.personService.addMode){
+      this.profileForm = new FormGroup({
+        firstName: new FormControl(""),
+        lastName: new FormControl(""),
+        email: new FormControl(""),
+        telephoneNumber: new FormControl(""),
+        dateOfBirth: new FormControl(""),
+      });
+    } else {
+      this.profileForm = new FormGroup({});
       this.router.navigateByUrl('person-list');
     }
-    let person = this.personService.peopleRepository.getPeople(this.personService.indexOfPersonUnderChange);
-    this.profileForm= new FormGroup({
-      firstName: new FormControl(person.FirstName),
-      lastName: new FormControl(person.LastName),
-      email: new FormControl(person.Email),
-      telephoneNumber: new FormControl(person.TelephoneNumber),
-      dateOfBirth: new FormControl(person.DateOfBirth),
-    });
   }
 
   ngOnInit(): void {
@@ -41,6 +51,7 @@ export class PeopleFormComponent implements OnInit {
 
   onSubmit() {
     let formValue = this.profileForm.value;
+    console.log(formValue);
     let newPeople = new People(
       formValue.firstName,
       formValue.lastName,

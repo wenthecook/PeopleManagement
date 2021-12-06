@@ -40,4 +40,9 @@ export class PersonListComponent implements OnInit {
     this.router.navigateByUrl('person-form');
   }
 
+  addPeople(): void {
+    this.personService.addMode = true;
+    this.router.navigateByUrl('person-form');
+  }
+
 }

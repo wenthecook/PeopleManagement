@@ -19,6 +19,8 @@ export class PersonService {
     this._indexOfPersonUnderChange = id;
   }
 
+  addMode: boolean = false;
+
   constructor() {
     this.peopleRepository = new mockPeopleRepository();
   }
