@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
+import { ConfirmChangeComponent } from '../confirm-change/confirm-change.component';
 import { PersonService } from '../person.service';
 
 import { People } from '../models/People';
@@ -17,7 +19,8 @@ export class PeopleFormComponent implements OnInit {
 
   constructor(
     private personService: PersonService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     if (this.personService.indexOfPersonUnderChange === -1) {
       this.router.navigateByUrl('person-list');
@@ -44,14 +47,14 @@ export class PeopleFormComponent implements OnInit {
       formValue.telephoneNumber,
       formValue.email
     );
-    let changeResult = this.personService.peopleRepository.changePeople(this.personService.indexOfPersonUnderChange, newPeople);
-    if (this.personService.debug) {
-      console.warn(newPeople);
-    }
-    if (changeResult) {
-      this.router.navigateByUrl('person-list');
-      return;
-    }
+    this.dialog.open(ConfirmChangeComponent, {
+      width: '350px',
+      data: newPeople,
+    });
+  }
+
+  discardChange() {
+    this.router.navigateByUrl('person-list');
   }
 
 }

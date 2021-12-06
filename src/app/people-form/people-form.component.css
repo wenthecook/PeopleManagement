@@ -14,3 +14,15 @@
   cursor: pointer;
   background-color: rgba(220, 220, 220);
 }
+
+.discard-button {
+  margin-bottom: 15px;
+  padding: 5px 15px 5px;
+  border: none;
+  border-radius: 5%;
+  font-size: 15px;
+}
+.discard-button:hover {
+  cursor: pointer;
+  background-color: rgba(220, 220, 220);
+}

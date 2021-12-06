@@ -14,13 +14,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmChangeComponent } from './confirm-change/confirm-change.component';
+import { ConfirmDiscardComponent } from './confirm-discard/confirm-discard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonListComponent,
-    PeopleFormComponent
+    PeopleFormComponent,
+    ConfirmChangeComponent,
+    ConfirmDiscardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
